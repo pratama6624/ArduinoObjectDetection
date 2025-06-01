@@ -8,10 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		412FC8FF2DEBF3AA00D56C14 /* ORSSerial in Frameworks */ = {isa = PBXBuildFile; productRef = 412FC8FE2DEBF3AA00D56C14 /* ORSSerial */; };
+		41A888D42DECA4F800A0DB17 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 41A888D32DECA4EE00A0DB17 /* README.md */; };
+		41A888D62DECA9CE00A0DB17 /* Arduino.ino in Sources */ = {isa = PBXBuildFile; fileRef = 41A888D52DECA9BA00A0DB17 /* Arduino.ino */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		412FC8EE2DEBF2BB00D56C14 /* ArduinoObjectDetection.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ArduinoObjectDetection.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		41A888D32DECA4EE00A0DB17 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		41A888D52DECA9BA00A0DB17 /* Arduino.ino */ = {isa = PBXFileReference; lastKnownFileType = text; path = Arduino.ino; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -37,6 +41,8 @@
 		412FC8E52DEBF2BB00D56C14 = {
 			isa = PBXGroup;
 			children = (
+				41A888D52DECA9BA00A0DB17 /* Arduino.ino */,
+				41A888D32DECA4EE00A0DB17 /* README.md */,
 				412FC8F02DEBF2BB00D56C14 /* ArduinoObjectDetection */,
 				412FC8EF2DEBF2BB00D56C14 /* Products */,
 			);
@@ -118,6 +124,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				41A888D42DECA4F800A0DB17 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -128,6 +135,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				41A888D62DECA9CE00A0DB17 /* Arduino.ino in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
