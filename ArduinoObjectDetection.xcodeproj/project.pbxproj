@@ -267,7 +267,10 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "App membutuhkan akses untuk komunikasi dengan perangkat serial.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "App ini butuh akses kamera buat deteksi jari kamu.";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSSystemExtensionUsageDescription = "Aplikasi ini menggunakan akses serial USB untuk komunikasi perangkat.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -294,7 +297,10 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "App membutuhkan akses untuk komunikasi dengan perangkat serial.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "App ini butuh akses kamera buat deteksi jari kamu.";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSSystemExtensionUsageDescription = "Aplikasi ini menggunakan akses serial USB untuk komunikasi perangkat.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
