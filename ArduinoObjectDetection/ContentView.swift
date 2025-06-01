@@ -6,6 +6,9 @@
 //
 
 import SwiftUI
+import Vision
+import AVFoundation
+import ORSSerial
 
 struct ContentView: View {
     var body: some View {
