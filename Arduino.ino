@@ -30,16 +30,16 @@ void loop() {
 
 void processCommand(String cmd) {
   if (cmd.startsWith("F")) {
-    int count = cmd.substring(1).toInt();
+    int pinNum = cmd.substring(1).toInt();
 
-    // Matikan semua pin dulu
+    // Matikan semua dulu
     for (int pin = 2; pin <= 6; pin++) {
       digitalWrite(pin, LOW);
     }
 
-    // Nyalakan sesuai jumlah jari (maks 5)
-    for (int i = 0; i < count && i < 5; i++) {
-      digitalWrite(2 + i, HIGH);  // pin 2 sampai 6
+    // Nyalakan satu pin sesuai command (misal F3 → pin 3)
+    if (pinNum >= 2 && pinNum <= 6) {
+      digitalWrite(pinNum, HIGH);
     }
   }
 }

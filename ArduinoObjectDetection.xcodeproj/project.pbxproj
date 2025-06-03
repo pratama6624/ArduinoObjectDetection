@@ -18,9 +18,22 @@
 		41A888D52DECA9BA00A0DB17 /* Arduino.ino */ = {isa = PBXFileReference; lastKnownFileType = text; path = Arduino.ino; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		4176DCD02DEF31120029B00C /* Exceptions for "ArduinoObjectDetection" folder in "ArduinoObjectDetection" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 412FC8ED2DEBF2BB00D56C14 /* ArduinoObjectDetection */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		412FC8F02DEBF2BB00D56C14 /* ArduinoObjectDetection */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				4176DCD02DEF31120029B00C /* Exceptions for "ArduinoObjectDetection" folder in "ArduinoObjectDetection" target */,
+			);
 			path = ArduinoObjectDetection;
 			sourceTree = "<group>";
 		};
@@ -275,9 +288,12 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ArduinoObjectDetection/Info.plist;
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "App membutuhkan akses untuk komunikasi dengan perangkat serial.";
 				INFOPLIST_KEY_NSCameraUsageDescription = "App ini butuh akses kamera buat deteksi jari kamu.";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Kami butuh akses mikrofon untuk mengenali suara kamu";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "Kami butuh akses ini untuk mengenali suara kamu";
 				INFOPLIST_KEY_NSSystemExtensionUsageDescription = "Aplikasi ini menggunakan akses serial USB untuk komunikasi perangkat.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -305,9 +321,12 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ArduinoObjectDetection/Info.plist;
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "App membutuhkan akses untuk komunikasi dengan perangkat serial.";
 				INFOPLIST_KEY_NSCameraUsageDescription = "App ini butuh akses kamera buat deteksi jari kamu.";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Kami butuh akses mikrofon untuk mengenali suara kamu";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "Kami butuh akses ini untuk mengenali suara kamu";
 				INFOPLIST_KEY_NSSystemExtensionUsageDescription = "Aplikasi ini menggunakan akses serial USB untuk komunikasi perangkat.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
