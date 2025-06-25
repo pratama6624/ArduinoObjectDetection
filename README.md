@@ -1,77 +1,89 @@
 # Swift Smart Home AI with Arduino (Jarvis Lite)
 
-Proyek ini adalah **smart home system berbasis macOS app full Swift** yang terintegrasi dengan **Arduino Uno R3** dan menggunakan **machine learning**, **gesture & face recognition (model)**, serta **speaker recognition (model)** untuk kontrol rumah pintar dengan perintah suara pemilik rumah. App ini difokuskan untuk berjalan di Mac karena keterbatasan perangkat (iPhone), namun sudah disiapkan untuk bisa di-port ke iOS di masa depan.
+**Jarvis Lite** adalah sistem smart home berbasis **macOS app full Swift** yang terintegrasi dengan **Arduino Uno R3**. Sistem ini menggabungkan kontrol suara berbasis **machine learning**, **face & gesture recognition**, dan **speaker recognition**. Dibuat khusus untuk Mac karena keterbatasan perangkat (iPhone), namun siap di-porting ke iOS di masa depan.
 
 ---
 
-## Fitur Utama
+## 🚀 Fitur Utama
 
-1. **Auto Open App** saat pengguna mendekati pintu (1–2 meter) via Bluetooth HM-10 BLE + Ultrasonic Sensor HC-SR04 (Optional)
-2. **Face & Hand Gesture Recognition** eksklusif hanya untuk pemilik rumah.
-3. **Koneksi Bluetooth** langsung dari Mac/IPhone ke Arduino Uno R3.
-4. **Kontrol Selenoid** untuk membuka pintu otomatis setelah validasi berhasil.
-5. **Speaker Recognition** untuk mengontrol berbagai fitur smart home (Hanya suara pemilik rumah terdaftar):
-   - Menyalakan/mematikan lampu
-   - Menyalakan/mematikan kipas/AC
-   - Ganti mode rumah (dalam/luar)
-6. **UI Sederhana & Intuitif** dengan tombol `Mulai Berbicara` dan `Berhenti Berbicara`.
-
----
-
-## Teknologi & Hardware yang Digunakan (Simulasi)
-
-| Komponen                 | Teknologi/Tools                           |
-|--------------------------|-------------------------------------------|
-| Bahasa Pemrograman & IDE | Swift (App Native) XCode                  |
-|                          | C++ (Arduino Native) Arduino IDE          |
-| Bluetooth                | CoreBluetooth + RSSI Detection            |
-| Machine Learning         | CoreML + CreateML & Vision Framework      |
-|                          | Vision Framework (Face Recognition)       |
-|                          | CoreML + CreateML (Gesture Model)         |
-|                          | SFSpeechRecognizer (Speaker Recognition)  |
-| Hardware                 | Laptop (Mac - Running XCode)              |
-|                          | Arduino Uno R3 (Micro Controller)         |
-|                          | Modul Bluetooth (HM-10 BLE)               |
-|                          | Sensor Jarak (HC-SR04)                    |
-|                          | Door Lock (Selenoid 12V)                  |
-|                          | Keamanan Tegangan (Relay Module)          |
-|                          | Keamanan Tegangan (Resistor 5k ohm)       |
-|                          | Tegangan Relay Selenoid (Adaptor 12V 1A)  |
-|                          | Tegangan Arduino Uno R3 (Adaptor 9V 1A)   |
-|                          | LED, Breadboard, Jumper & OLED            |
-| Komunikasi               | Serial Bluetooth (UART)                   |
+1. **Auto Launch App** saat pengguna mendekati rumah via BLE + sensor ultrasonic (opsional).
+2. **Face & Hand Gesture Recognition** eksklusif untuk pemilik rumah.
+3. **Kontrol Pintu Otomatis (Selenoid Lock)** via Bluetooth setelah validasi wajah/gesture.
+4. **Kontrol Perangkat Rumah** lewat suara (hanya oleh pemilik):
+   - Lampu, kipas, AC, dan lainnya.
+5. **Mode Sistem:**
+   - Mode Santai (idle)
+   - Mode Kontrol (aktif perintah suara)
+6. **Speaker Recognition** – kontrol hanya bisa dijalankan oleh suara terverifikasi.
+7. **UI Simple & Intuitif** – tombol `Mulai Bicara` & `Berhenti Bicara`.
 
 ---
 
-## Cara Kerja (Flow)
+## 🛠️ Teknologi & Hardware
 
-1. Arduino yang sudah diberi program dalam keadaan standby dan broadcasting Bluetooth.
-2. Saat Mac/IPhone mendeteksi/mendekati device Arduino dalam jarak (2 meter max) dengan sensor ultrasonic yang divalidasi oleh RSSI HM-10 kuat (dekat), app otomatis terbuka.
-3. App memulai validasi wajah dan gesture tangan kamu (Hanya Pemilik Rumah Terdaftar).
-4. Jika validasi lolos, perintah `"OPEN"` dikirim ke Arduino → membuka selenoid pintu.
-5. Setelah masuk, fitur speaker recognition aktif (Hanya Pemilik Rumah Terdaftar).
-6. Kamu bisa mengucapkan perintah suara, seperti:
-   - `"Nyalakan lampu utama, dapur, dan lainya"`
-   - `"Ganti mode ke dalam rumah"`
-7. Perintah dikirim via Bluetooth ke Arduino dan dieksekusi.
-
----
-
-## Keamanan
-
-1. Validasi biometric hanya bisa dilakukan oleh pemilik melalui wajah & gesture
-2. Tidak akan mengaktifkan sistem jika tidak dikenali → lebih aman dari sekadar tombol
+| Komponen           | Detail                                      |
+|--------------------|---------------------------------------------|
+| Bahasa             | Swift (Xcode) + C++ (Arduino IDE)           |
+| Bluetooth          | CoreBluetooth + HM-10 BLE (UART)            |
+| ML & Vision        | CoreML, CreateML, Vision (Face & Gesture)   |
+| Speech             | SFSpeechRecognizer + CreateML (Speaker)     |
+| Komunikasi         | Serial Bluetooth (HM-10 UART)               |
+| Mac                | Sebagai pusat kontrol & tampilan UI         |
+| Arduino Uno R3     | Mikrokontroler eksekutor perintah           |
+| Sensor & Aktuator  | HC-SR04, Relay, LED, Selenoid Lock 12V      |
+| Daya               | Arduino: Adaptor 9V 1A, Selenoid: 12V 1A    |
+| Proteksi           | Dioda 1N4007, Relay, Resistor, dll          |
 
 ---
 
-## Rencana Pengembangan
+## 🔁 Flow Sistem
 
-Jika dalam kasus smart home gunakan module MiniDSP UMA-8 (Microphone Array) dan pasang di beberapa titik dalam rumah untuk kontrol penuh dengan suara alih-alih menggunakan microfon HP
-NOTE : MiniDSP UMA-8 memiliki jarak broadcast max 8 meter dan ada banyak alternatifnya
+1. Arduino standby & broadcast Bluetooth HM-10.
+2. Mac mendeteksi sinyal BLE + (opsional) sensor jarak → buka aplikasi otomatis.
+3. Validasi wajah + gesture.
+4. Jika lolos, kirim perintah `"OPEN"` → Arduino membuka kunci pintu.
+5. Aktifkan mode kontrol suara → pengguna bisa memberi perintah seperti:
+   - `"Nyalakan lampu satu"`
+   - `"Matikan semua"`
+   - `"Ganti mode rumah"`
+6. Perintah dikirim via Bluetooth ke Arduino dan dieksekusi sesuai kode.
 
 ---
 
-## Author
+## 🔐 Keamanan & Perlindungan
 
-Pratama – @pratama6624
-Apple Developer & Swift Enthusiast yang lagi ngegas jadi iOS Engineer Pro!
+| Potensi Celah                        | Solusi                                                                 |
+|-------------------------------------|------------------------------------------------------------------------|
+| HM-10 BLE terbuka                   | Atur password AT+PASS + pairing authenticated AT+TYPE3                |
+| Perintah langsung diproses Arduino  | Tambahkan token/kode prefix unik sebelum dieksekusi                    |
+| Mode kontrol bisa diakses bebas     | Tambahkan keyword rahasia + verifikasi PIN atau suara                 |
+| Kontrol terus aktif tanpa batas     | Timer auto-exit jika tidak ada suara dalam 30 detik                   |
+| Suara bisa dipalsukan               | Gunakan speaker recognition model + validasi ulang                    |
+| Data BLE bisa di-sniff              | Encode sederhana (XOR key) + validasi token                           |
+| Arduino terlalu polos               | Validasi panjang & isi data sebelum proses, sanitasi input            |
+
+---
+
+## ⚙️ Rencana Upgrade
+
+- Ganti **Arduino Uno R3** dengan **ESP32 BLE** untuk dukungan keamanan + performa BLE lebih baik.
+- Gunakan **Microphone Array (MiniDSP UMA-8)** di beberapa titik rumah.
+- Tambahkan **cloud integration** atau HomeKit untuk smart scene dan integrasi Siri.
+- Buat sistem enkripsi ringan antara app & Arduino (encode UUID/kode).
+
+---
+
+## 🧠 Latar Belakang
+
+> Kenapa bikin sendiri?
+
+Karena tujuan utamanya bukan cuma “menggunakan” teknologi, tapi **memahami, menguasai, dan mengembangkannya**. Jarvis Lite dibuat sebagai langkah nyata untuk eksplorasi gabungan software & hardware berbasis AI + IoT.
+
+---
+
+## 🙋 Author
+
+**Pratama – [@pratama6624](https://github.com/pratama6624)**  
+Apple Developer & Swift Enthusiast. Sedang proses naik level jadi iOS Engineer Pro yang ngerti dalemannya, bukan cuma pake doang! ⚡
+
+---

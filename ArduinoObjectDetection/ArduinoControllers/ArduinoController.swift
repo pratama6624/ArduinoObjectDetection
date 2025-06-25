@@ -13,7 +13,7 @@ class ArduinoController: NSObject, ObservableObject, ORSSerialPortDelegate {
     
     override init() {
         super.init()
-        if let port = ORSSerialPort(path: "/dev/cu.usbserial-10") {
+        if let port = ORSSerialPort(path: "/dev/cu.usbserial-110") {
             self.serialPort = port
             self.serialPort?.baudRate = 9600
             self.serialPort?.delegate = self
@@ -37,3 +37,12 @@ class ArduinoController: NSObject, ObservableObject, ORSSerialPortDelegate {
         self.serialPort = nil
     }
 }
+
+// Untuk wiring LED 5 buah (220 ohm resistor)
+// 1. LED 1 (simulasi lampu utama)
+// 2. LED 2 (simulasi lampu kamar 1)
+// 3. LED 3 (simulasi lampu kamar 2)
+// 4. LED 4 (simulasi lampu dapur)
+// 5. LED 5 (simulasi lampu ruang belajar)
+
+// Selenoid + Relay + Adaptor DC Power 9V 1A
