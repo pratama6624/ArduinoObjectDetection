@@ -164,22 +164,40 @@ class SpeechRecognizer: ObservableObject {
         let lowercased = text.lowercased()
 
         let perintah: [(keyword: String, command: String)] = [
-            ("lampu satu", "2"),
-            ("lampu 1", "2"),
-            ("lampu dua", "3"),
-            ("lampu 2", "3"),
-            ("lampu tiga", "4"),
-            ("lampu 3", "4"),
-            ("lampu empat", "5"),
-            ("lampu 4", "5"),
-            ("lampu lima", "6"),
-            ("lampu 5", "6"),
+            // Lampu (pin 2–4 di Arduino)
+            ("lampu satu", "1"),
+            ("lampu 1", "1"),
+            ("lampu dua", "2"),
+            ("lampu 2", "2"),
+            ("lampu tiga", "3"),
+            ("lampu 3", "3"),
+
+            // Matikan semua lampu
             ("semua mati", "0"),
             ("matikan semua", "0"),
-            ("buka pintu", "7"),
-            ("buka kunci", "7"),
-            ("tutup pintu", "8"),
-            ("tutup kunci", "8")
+            ("matikan lampu", "0"),
+
+            // Stepper (A–D)
+            ("buka tirai sedikit", "A"),     // 25°
+            ("buka tirai seperempat", "B"),  // 50°
+            ("buka tirai setengah", "C"),    // 75°
+            ("buka tirai sepenuhnya", "D"),       // 100°
+
+            // Buzzer
+            ("bunyikan", "Z"),
+            ("bunyikan alarm", "Z"),
+            ("diam", "X"),
+            ("matikan suara", "X"),
+
+            // RTC (lihat waktu)
+            ("jam berapa", "T"),
+            ("lihat waktu", "T"),
+
+            // Selenoid (relay pin 13)
+            ("buka pintu", "S"),
+            ("buka kunci", "S"),
+            ("tutup pintu", "s"),
+            ("tutup kunci", "s")
         ]
 
         for item in perintah {
@@ -252,29 +270,7 @@ class SpeechRecognizer: ObservableObject {
                 // Reset timer tiap kali ada update
                 self.debounceTimer?.invalidate()
                 DispatchQueue.main.async {
-//                    self.debounceTimer = Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { _ in
-//                        if !self.hasHandledFinalResult {
-//                            self.hasHandledFinalResult = true
-//                            self.stopListening()
-//
-//                            do {
-//                                let model = try CleanVoiceTraining(configuration: MLModelConfiguration()).model
-//                                print("✅ Model berhasil di-load.")
-//                            } catch {
-//                                print("Gagal load model: \(error.localizedDescription)")
-//                            }
-//
-//                            if let command = self.parsePerintah(from: finalString) {
-//                                self.speak("Ok, perintah dipahami")
-//                                completion(command)
-//                            } else {
-//                                print("Tidak ada perintah cocok.")
-//                                self.speak("Tidak ada perintah cocok")
-//                                completion(finalString)
-//                            }
-//                        }
-//                    }
-                    self.debounceTimer = Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { _ in
+                    self.debounceTimer = Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { _ in
                         if !self.hasHandledFinalResult {
                             self.hasHandledFinalResult = true
                             self.stopListening()
@@ -284,28 +280,34 @@ class SpeechRecognizer: ObservableObject {
                             if self.cekModeKontrol(finalLower) {
                                 self.isKontrolAktif = true
                                 self.speak("Mode kontrol diaktifkan")
+                                print("Mode kontrol diaktifkan")
                                 return
                             }
 
                             if self.cekKeluarModeKontrol(finalLower) {
                                 self.isKontrolAktif = false
                                 self.speak("Mode kontrol dinonaktifkan")
+                                print("Mode kontrol dinonaktifkan")
                                 return
                             }
 
                             if self.isKontrolAktif, let command = self.parsePerintah(from: finalLower) {
                                 self.speak("Menjalankan perintah \(command)")
+                                print("Menjalankan perintah \(command)")
                                 completion(command) // Kirim ke Arduino
                             } else if self.isKontrolAktif {
                                 self.speak("Perintah tidak dikenali dalam mode kontrol")
+                                print("Perintah tidak dikenali dalam mode kontrol")
                             } else {
                                 // Bukan mode kontrol → kirim ke AI
                                 self.ai.tanyaKeAI(finalLower) { response in
                                     DispatchQueue.main.async {
                                         if let jawaban = response {
                                             self.speak(jawaban)
+                                            print(jawaban)
                                         } else {
                                             self.speak("Maaf, saya tidak mengerti.")
+                                            print("Maaf, saya tidak mengerti.")
                                         }
                                         completion(finalString)
                                     }

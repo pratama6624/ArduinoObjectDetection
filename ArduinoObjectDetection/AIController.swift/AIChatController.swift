@@ -51,6 +51,11 @@ class AIChatController: ObservableObject {
                    let choices = json["choices"] as? [[String: Any]],
                    let message = choices.first?["message"] as? [String: Any],
                    let content = message["content"] as? String {
+                    
+                    let respons = content.trimmingCharacters(in: .whitespacesAndNewlines)
+                        print("AI Jawab: \(respons)")
+                        completion(respons)
+                    
                     completion(content.trimmingCharacters(in: .whitespacesAndNewlines))
                 } else {
                     print("Failed to parse")

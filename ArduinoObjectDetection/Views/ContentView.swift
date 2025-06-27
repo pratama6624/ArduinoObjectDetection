@@ -26,8 +26,9 @@ struct ContentView: View {
                 Button("🎙️ Mulai Bicara") {
                     speechRecognizer.startListening { result in
                         resultText = result
-                        if ["0", "2", "3", "4", "5", "6"].contains(result) {
+                        if ["1", "2", "3", "0", "A", "B", "C", "D", "S", "s", "Z", "X", "T"].contains(result) {
                             bleCommand = result
+                            bleController.sendCommand(bleCommand!)
                             // Kirim ke BLE di sini pakai sendCommand(result)
                         }
                     }
