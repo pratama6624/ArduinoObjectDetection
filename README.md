@@ -6,12 +6,10 @@ Swift Smart Home AI with Arduino (Jarvis Lite)
 ## Rangkaian 1
 
 <img width="1391" alt="Screenshot 2025-06-24 at 12 08 05 AM" src="https://github.com/user-attachments/assets/c6c15b42-0df1-45fc-8154-d63e8483523d" />
----
 
 ## Rangkaian 2
 
 <img width="1388" alt="Screenshot 2025-06-27 at 4 39 31 PM" src="https://github.com/user-attachments/assets/c6a7436c-7128-4b49-8c72-abdb6f4dbefa" />
----
 
 ## 🚀 Fitur Utama
 
